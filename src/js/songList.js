@@ -6,10 +6,14 @@
       if (data) {
         this.$el.html(this.template)
         let {
-          songs
+          songs,
+          selectedSongId
         } = data
         songs.map((song) => {
           let li = $(`<li data-song-id=${song.id}>${song.name}</li>`)
+          if(selectedSongId === song.id){
+            li.addClass('active')
+          }
           this.$el.find('ul').append(li)
         })
       }
@@ -17,16 +21,14 @@
     init() {
       this.$el = $(this.el)
     },
-    activeItem(li) {
-      $(li).addClass('active').siblings('.active').removeClass('active')
-    },
     removeActive() {
       this.$el.find('.active').removeClass('active')
     }
   }
   let model = {
     data: {
-      songs: []
+      songs: [],
+      selectedSongId: undefined,
     },
     find() {
       let query = new AV.Query('Song')
@@ -63,14 +65,8 @@
         this.removeAllActive()
       })
       window.eventHub.on('uploaded', (data) => {
-        // let id = this.model.data.songs.length + 1
-        // let name = data.name
-        // this.model.data.songs.push({
-        //   id,
-        //   name
-        // })
-        // this.view.render(this.model.data)
         this.findAndRender()
+        console.log(data.id)
       })
       window.eventHub.on('selectNewSong', () => {
         this.view.removeActive()
@@ -79,11 +75,14 @@
     bindEvents() {
       this.view.$el.on('click', 'li', (e) => {
         let li = e.currentTarget
-        this.view.activeItem(li)
         let songId = li.getAttribute('data-song-id')
         let {
           songs
         } = this.model.data
+        
+        this.model.data.selectedSongId = songId
+        this.view.render(this.model.data)
+
         let data = {}
         for (let i = 0; i < songs.length; i++) {
           if (songs[i].id === songId) {

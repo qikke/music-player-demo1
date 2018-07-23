@@ -10,7 +10,7 @@
       </div>
       <div class="row" >
         <label>歌手
-          <input type="text" value="__singer__" name = "singer">
+          <input type="text" value="__singer__" name="singer">
         </label>
       </div>
       <div class="row">
@@ -38,9 +38,6 @@
         $(this.el).prepend('<h1>新建歌曲</h1>')
       }
     },
-    reset() {
-      this.render()
-    }
   }
 
   let model = {
@@ -50,7 +47,7 @@
       url: '',
       id: ''
     },
-    upload(data) {
+    create(data) {
       let Song = AV.Object.extend('Song');
       let song = new Song();
       return song.save({
@@ -68,7 +65,24 @@
         })
       })
     },
-    fetch() {}
+    update(data) {
+      let song = AV.Object.createWithoutData('Song', this.data.id)
+
+      return song.save({
+        name: data.name,
+        singer: data.singer,
+        url: data.url
+      }).then((newSong) => {
+        let {
+          id,
+          attributes
+        } = newSong
+        Object.assign(this.data, {
+          id,
+          ...attributes
+        })
+      })
+    }
   }
 
   let controller = {
@@ -107,11 +121,18 @@
         needs.map((string) => {
           data[string] = this.view.$el.find(`input[name=${string}]`).val()
         })
-        this.model.upload(data).then(() => {
-          alert("保存成功！")
-          this.view.reset()
-          window.eventHub.emit('uploaded', this.model.data)
-        })
+
+        if (this.model.data.id) {
+          this.model.update(data).then(()=>{
+            alert("编辑成功！")
+            window.eventHub.emit('uploaded', this.model.data)
+          })
+        } else {
+          this.model.create(data).then(() => {
+            alert("保存成功！")
+            window.eventHub.emit('uploaded', this.model.data)
+          })
+        }
       })
     }
   }
