@@ -1,7 +1,7 @@
 {
   let view = {
     el: '.page>main',
-    template: ` <h1>新建歌曲</h1>
+    template: `
     <form class="form">
       <div class="row">
         <label>歌名
@@ -32,6 +32,11 @@
         html = html.replace(`__${value}__`, data[value] || '')
       })
       $(this.el).html(html)
+      if (data.id) {
+        $(this.el).prepend('<h1>编辑歌曲</h1>')
+      } else {
+        $(this.el).prepend('<h1>新建歌曲</h1>')
+      }
     },
     reset() {
       this.render()
@@ -75,7 +80,23 @@
       this.bindEvents()
       //订阅upload
       window.eventHub.on('upload', (data) => {
+        Object.assign(this.model.data, data)
         this.view.render(data)
+      })
+      window.eventHub.on('select', (data) => {
+        this.model.data = data
+        this.view.render(this.model.data)
+      })
+      window.eventHub.on('selectNewSong', () => {
+        if (this.model.data.id) {
+          this.model.data = {
+            name: '',
+            singer: '',
+            url: '',
+            id: ''
+          }
+        }
+        this.view.render(this.model.data)
       })
     },
     bindEvents() {
@@ -89,7 +110,7 @@
         this.model.upload(data).then(() => {
           alert("保存成功！")
           this.view.reset()
-          window.eventHub.emit('uploaded',this.model.data)
+          window.eventHub.emit('uploaded', this.model.data)
         })
       })
     }

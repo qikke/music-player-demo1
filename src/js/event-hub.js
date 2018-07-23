@@ -4,6 +4,10 @@ window.eventHub = {
     upload: [],
     //上传成功后触发
     uploaded:[],
+    //选择歌曲后触发
+    select:[],
+    //选择新建歌曲时触发
+    selectNewSong:[],
   },
   //订阅
   on: function (eventName, fn) {
