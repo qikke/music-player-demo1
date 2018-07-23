@@ -20,13 +20,20 @@
   }
   let model = {
     data: {
-      songs: [{
-        id: 1,
-        name: '1'
-      }, {
-        id: 2,
-        name: '2'
-      }]
+      songs: []
+    },
+    find() {
+      let query = new AV.Query('Song')
+      return query.find().then((songs) => {
+        this.data.songs = songs.map((song) => {
+          return {
+            id: song.id,
+            ...song.attributes
+          }
+        })
+        console.log(this.data.songs)
+        return songs
+      })
     }
   }
   let controller = {
@@ -34,19 +41,28 @@
       this.view = view
       this.model = model
       this.view.init()
-      this.view.render(this.model.data)
+      this.findAndRender()
       window.eventHub.on('upload', () => {
         this.removeAllActive()
       })
       window.eventHub.on('uploaded', (data) => {
-        let id = this.model.data.songs.length + 1
-        let name = data.name
-        this.model.data.songs.push({id,name})
-        this.view.render(this.model.data)
+        // let id = this.model.data.songs.length + 1
+        // let name = data.name
+        // this.model.data.songs.push({
+        //   id,
+        //   name
+        // })
+        // this.view.render(this.model.data)
+        this.findAndRender()
       })
     },
     removeAllActive() {
       $(this.view.el).find('.active').removeClass('active')
+    },
+    findAndRender() {
+      this.model.find().then(() => {
+        this.view.render(this.model.data)
+      })
     }
   }
 
