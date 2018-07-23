@@ -50,17 +50,21 @@ body {
   cursor: pointer;
 }
 
+.aside>.newSong.active{
+  background: #ddd;
+}
+
 .aside>.songList {
   flex-grow: 1;
   border: 1px solid #ddd;
 }
 
-.songList>li {
+.songList li {
   padding: 10px;
   border-bottom: 1px solid #DDD;
 }
 
-.songList>li.active {
+.songList li.active {
   background: #DDD;
 }
 
@@ -75,13 +79,28 @@ body {
 }
 
 /* main */
-.form{
-  padding-top: 10px;
+
+.form {
+  padding-top: 20px;
 }
-.form input[type="text"]{
+
+.form input[type="text"] {
+  padding: 2px;
   font-size: 12px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: none;
 }
-.page > main{
-  padding:10px;
+
+.page>main {
+  flex-grow: 1;
+  padding: 10px;
+  background: #ddd;
+}
+
+.page > main button {
+  padding: 2px 5px;
+  border-radius: 5px;
+  border:none;
+  background: white;
 }
