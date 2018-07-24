@@ -64,7 +64,7 @@
       window.eventHub.on('upload', () => {
         this.removeAllActive()
       })
-      window.eventHub.on('uploaded', (data) => {
+      window.eventHub.on('created', (data) => {
         this.findAndRender()
         console.log(data.id)
       })

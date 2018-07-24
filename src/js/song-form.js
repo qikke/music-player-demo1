@@ -124,13 +124,13 @@
 
         if (this.model.data.id) {
           this.model.update(data).then(()=>{
+            window.eventHub.emit('created', this.model.data)
             alert("编辑成功！")
-            window.eventHub.emit('uploaded', this.model.data)
           })
         } else {
           this.model.create(data).then(() => {
+            window.eventHub.emit('created', this.model.data)
             alert("保存成功！")
-            window.eventHub.emit('uploaded', this.model.data)
           })
         }
       })

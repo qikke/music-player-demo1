@@ -1,9 +1,12 @@
 window.eventHub = {
   events: {
+    //上传文件前触发
+    beforeUpload:[],
     //上传文件时触发
     upload: [],
     //上传成功后触发
-    uploaded:[],
+    uploaded: [],
+    created:[],
     //选择歌曲后触发
     select:[],
     //选择新建歌曲时触发
