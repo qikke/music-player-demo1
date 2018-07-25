@@ -50,7 +50,7 @@ body {
   cursor: pointer;
 }
 
-.aside>.newSong.active{
+.aside>.newSong.active {
   background: #ddd;
 }
 
@@ -98,9 +98,84 @@ body {
   background: #ddd;
 }
 
-.page > main button {
+.page>main button {
   padding: 2px 5px;
   border-radius: 5px;
-  border:none;
+  border: none;
   background: white;
+}
+
+/* loader */
+
+#loader {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: rgba(19, 18, 18, 0.2);
+  z-index: 1;
+}
+
+#loader.active {
+  display: block;
+}
+
+#loader::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  zoom: 1;
+  /* Increase this for a bigger symbol*/
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(0deg, #f4f5fa 1px, transparent 0, transparent 8px, #f4f5fa 8px), /* 6  */
+  linear-gradient(90deg, #f4f5fa 1px, #f6f9fb 0, #f6f9fb 3px, #f4f5fa 3px), linear-gradient(0deg, #ececf5 1px, transparent 0, transparent 8px, #ececf5 8px), /* 5  */
+  linear-gradient(90deg, #ececf5 1px, #f2f3f9 0, #f2f3f9 3px, #ececf5 3px), linear-gradient(0deg, #e7eaf4 1px, transparent 0, transparent 8px, #e7eaf4 8px), /* 4  */
+  linear-gradient(90deg, #e7eaf4 1px, #eef1f8 0, #eef1f8 3px, #e7eaf4 3px), linear-gradient(0deg, #b9bedd 1px, transparent 0, transparent 10px, #b9bedd 10px), /* 3  */
+  linear-gradient(90deg, #b9bedd 1px, #d0d5e8 0, #d0d5e8 3px, #b9bedd 3px), linear-gradient(0deg, #9fa6d2 1px, transparent 0, transparent 15px, #9fa6d2 15px), /* 2  */
+  linear-gradient(90deg, #9fa6d2 1px, #c0c5e1 0, #c0c5e1 3px, #9fa6d2 3px), linear-gradient(0deg, #8490c6 1px, transparent 0, transparent 15px, #8490c6 15px), /* 1  */
+  linear-gradient(90deg, #8490c6 1px, #aeb5da 0, #aeb5da 3px, #8490c6 3px);
+  background-repeat: no-repeat;
+  background-size: 4px 9px, /* 6 */
+  4px 9px, 4px 9px, /* 5 */
+  4px 9px, 4px 9px, /* 4 */
+  4px 9px, 4px 11px, /* 3 */
+  4px 11px, 4px 16px, /* 2 */
+  4px 16px, 4px 16px, /* 1 */
+  4px 16px;
+  background-position-x: -4px;
+  /* Hide All */
+  background-position-y: 3px, 3px, 3px, 3px, 3px, 3px, 2px, 2px, 0, 0, 0, 0;
+  animation: wait .80s steps(1, start) infinite;
+}
+
+@keyframes wait {
+  12.5% {
+    background-position-x: -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, 0, 0;
+  }
+  25% {
+    background-position-x: -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, 0, 0, 6px, 6px;
+  }
+  37.5% {
+    background-position-x: -4px, -4px, -4px, -4px, -4px, -4px, 0, 0, 6px, 6px, 12px, 12px;
+  }
+  50% {
+    background-position-x: -4px, -4px, -4px, -4px, 0, 0, 6px, 6px, 12px, 12px, -4px, -4px;
+  }
+  62.5% {
+    background-position-x: -4px, -4px, 0, 0, 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px;
+  }
+  75% {
+    background-position-x: 0, 0, 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px;
+  }
+  87.5% {
+    background-position-x: 6px, 6px, 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px;
+  }
+  100% {
+    background-position-x: 12px, 12px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px, -4px;
+  }
 }
