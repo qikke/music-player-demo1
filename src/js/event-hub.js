@@ -11,6 +11,8 @@ window.eventHub = {
     select:[],
     //选择新建歌曲时触发
     selectNewSong:[],
+    //tab切换时触发
+    tabClick:[],
   },
   //订阅
   on: function (eventName, fn) {
