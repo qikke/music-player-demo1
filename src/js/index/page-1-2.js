@@ -1,6 +1,22 @@
 {
   let view = {
     el: 'section.latest',
+    template: `
+    <li>
+      <h3>{{song.name}}</h3>
+      <p>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-highquality"></use>
+        </svg>
+        {{song.singer}}
+      </p>
+      <a href="./song.html?id={{song.id}}" class="run">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-bofang"></use>
+        </svg>
+      </a>
+    </li>
+    `,
     init() {
       this.$el = $(this.el)
     },
@@ -8,30 +24,17 @@
       let songs = data.songs
       let $ol = this.$el.find('ol')
       songs.map((song) => {
-        let $li = $(`
-        <li>
-          <h3>${song.name}</h3>
-          <p>
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-highquality"></use>
-            </svg>
-            ${song.singer}
-          </p>
-          <a href="" class="run">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-bofang"></use>
-            </svg>
-          </a>
-        </li>
-        `)
+        let $li = $(this.template.replace('{{song.name}}', song.name)
+          .replace('{{song.singer}}', song.singer)
+          .replace('{{song.id}}', song.id))
         $ol.append($li)
       })
     }
   }
 
   let model = {
-    data:{
-      songs:[]
+    data: {
+      songs: []
     },
     find() {
       let query = new AV.Query('Song')
@@ -45,7 +48,7 @@
         })
         return songs
       })
-     
+
     }
   }
 
@@ -54,7 +57,7 @@
       this.view = view
       this.view.init()
       this.model = model
-      this.model.find().then(()=>{
+      this.model.find().then(() => {
         this.view.render(this.model.data)
       })
     }
