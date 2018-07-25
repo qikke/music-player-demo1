@@ -15,6 +15,25 @@ a {
   color: inherit;
 }
 
+h1,
+h2,
+h3 {
+  font-weight: normal;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.noCollapse::before {
+  content: '';
+  display: table;
+}
+
 /* .sticky {
   position: fixed;
   top: 0;
@@ -42,13 +61,10 @@ body {
 
 .sticky>.topbar>a {
   color: white;
-
   border: 1px solid white;
   border-radius: 16px;
   padding: 3px 10px;
 }
-
-.sticky>.globalTabs {}
 
 .sticky>.globalTabs ol {
   display: flex;
@@ -61,11 +77,116 @@ body {
   display: flex;
   justify-content: center;
 }
-.sticky>.globalTabs .text{
+
+.sticky>.globalTabs .text {
   display: block;
   padding: 9px 5px;
 }
-.sticky>.globalTabs li.active .text{
-  color:#D43C33;
+
+.sticky>.globalTabs li.active .text {
+  color: #D43C33;
   border-bottom: 3px solid #D43C33;
+}
+
+.tabContent {
+  border-top: 1px solid #ddd;
+}
+
+.tabContent>li {
+  display: none;
+}
+
+.tabContent>li.active {
+  display: block;
+}
+
+/* page-1 */
+
+.tabContent>.page-1 h2 {
+  font-size: 17px;
+  padding-left: 8px;
+  margin: 20px 0 8px;
+  border-left: 2px solid #D43C33;
+}
+
+.tabContent>.page-1>.playlists .songs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.tabContent>.page-1>.playlists .songs li {
+  width: 32.8%;
+  margin-bottom: 25px;
+}
+
+.tabContent>.page-1>.playlists .songs img {
+  width: 100%;
+}
+
+.tabContent>.page-1>.latest ol {
+  margin-top: 20px;
+}
+
+.tabContent>.page-1>.latest li {
+  padding-left: 5px;
+  position: relative;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-top: 8px;
+}
+
+.tabContent>.page-1>.latest h3 {
+  font-size: 17px;
+}
+
+.tabContent>.page-1>.latest p {
+  font-size: 12px;
+  color: #888;
+  padding-top: 3px;
+}
+
+.tabContent>.page-1>.latest svg {
+  transform-origin: 0px 0px 0px;
+}
+
+.tabContent>.page-1>.latest .run svg {
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tabContent>.page-1 footer {
+  height: 180px;
+  width: 100%;
+  background: url('../img/footer.png') no-repeat center;
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 37px;
+}
+
+.tabContent>.page-1 footer>div {
+  width: 100%;
+  text-align: center;
+}
+
+.tabContent>.page-1 footer .link-wrapper>a {
+  display: inline-block;
+  border: 1px solid;
+  font-size: 16px;
+  color: #D43C33;
+  padding: 10px 19px;
+  border-radius: 19px;
+}
+
+.tabContent>.page-1 footer .copyright {
+  font-size: 12px;
+  color: #888;
+  transform: scale(.75);
 }

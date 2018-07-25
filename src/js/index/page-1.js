@@ -3,6 +3,12 @@
     el: '.page-1',
     init() {
       this.$el = $(this.el)
+    },
+    show(){
+      this.$el.addClass('active')
+    },
+    hide(){
+      this.$el.removeClass('active')
     }
   }
 
@@ -18,9 +24,9 @@
           index
         } = data
         if(this.view.$el.index() === index){
-          this.view.$el.show()
+          this.view.show()
         }else{
-          this.view.$el.hide()
+          this.view.hide()
         }
       })
     }
