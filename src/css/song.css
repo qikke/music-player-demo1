@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.page {
+  height: 100vh;
+}
+
+.diskWrapper {
+  height: 100vh;
+  position: relative;
+  padding-top: 20vw;
+}
+
+.diskWrapper::before {
+  content: '';
+  background: url('./img/backg.jpg') no-repeat center center;
+  background-size: cover;
+  filter: blur(30px);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.diskWrapper>.disk {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  animation: circle 18s infinite linear;
+}
+
+.diskWrapper>.disk>.diskImg {
+  width: 72vw;
+}
+
+.diskWrapper>.disk>.diskLight {
+  width: 72vw;
+  position: absolute;
+}
+
+.diskWrapper>.disk>.backgroundImg {
+  border-radius: 50%;
+  width: 45vw;
+  position: absolute;
+}
+
+.diskWrapper>.citouImg {
+  position: absolute;
+  width: 24vw;
+  left: 45vw;
+  top: 0;
+  z-index: 2;
+}
+
+.diskWrapper>.icon{
+  position: absolute;
+  width: 14vw;
+  height: 14vw;
+  top: 49vw;
+  left:43.8vw;
+}
+
+@keyframes circle{
+  0% {
+    transform:rotate(0)
+  }
+  100%{
+    transform:rotate(360deg)
+  }
+}

@@ -3,14 +3,23 @@
     el: '#app',
     template: `
       <audio src="{{url}}"></audio>
-      <button class="play">播放</button>
-      <button class="pause">暂停</button>
+      <div class="diskWrapper">
+        <img class="citouImg" src="./img/citou.png" alt="">
+        <div class="disk">
+          <img class="diskImg" src="./img/disk-light.png">
+          <img class="diskLight" src="./img/disk.png">
+          <img class="backgroundImg" src="./img/backg.jpg">
+        </div>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-bofang2"></use>
+        </svg>
+
+      </div>
     `,
     init(){
       this.$el = $(this.el)
     },
     render(data){
-      
       this.$el.html(this.template.replace('{{url}}',data.url))
     },
     play(){
