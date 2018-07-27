@@ -19,6 +19,16 @@
         </label>
       </div>
       <div class="row">
+        <label>图片
+          <input type="text" value="__img__" name="img">
+        </label>
+      </div>
+      <div class="row">
+        <label>歌词
+          <textarea name="lyrics" cols="100" rows="15">__lyrics__</textarea>
+        </label>
+      </div>
+      <div class="row">
         <button type="submit">保存</button>
       </div>
     </form>`,
@@ -26,7 +36,7 @@
       this.$el = $(this.el)
     },
     render: function (data = {}) {
-      let placeholders = ['name', 'singer', 'url', 'id']
+      let placeholders = ['name', 'singer', 'url', 'id', 'img','lyrics']
       let html = this.template
       placeholders.forEach((value) => {
         html = html.replace(`__${value}__`, data[value] || '')
@@ -45,7 +55,8 @@
       name: '',
       singer: '',
       url: '',
-      id: ''
+      id: '',
+      img: ''
     },
     create(data) {
       let Song = AV.Object.extend('Song');
@@ -53,7 +64,9 @@
       return song.save({
         name: data.name,
         singer: data.singer,
-        url: data.url
+        url: data.url,
+        img: data.img,
+        lyrics:data.lyrics
       }).then((newSong) => {
         let {
           id,
@@ -71,7 +84,9 @@
       return song.save({
         name: data.name,
         singer: data.singer,
-        url: data.url
+        url: data.url,
+        img: data.img,
+        lyrics:data.lyrics
       }).then((newSong) => {
         let {
           id,
@@ -107,7 +122,9 @@
             name: '',
             singer: '',
             url: '',
-            id: ''
+            id: '',
+            img: '',
+            lyrics:''
           }
         }
         this.view.render(this.model.data)
@@ -116,14 +133,14 @@
     bindEvents() {
       this.view.$el.on('submit', 'form', (e) => {
         e.preventDefault()
-        let needs = ['name', 'singer', 'url']
+        let needs = ['name', 'singer', 'url', 'img','lyrics']
         let data = {}
         needs.map((string) => {
-          data[string] = this.view.$el.find(`input[name=${string}]`).val()
+          data[string] = this.view.$el.find(`[name=${string}]`).val()
         })
 
         if (this.model.data.id) {
-          this.model.update(data).then(()=>{
+          this.model.update(data).then(() => {
             window.eventHub.emit('created', this.model.data)
             alert("编辑成功！")
           })

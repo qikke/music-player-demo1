@@ -16,39 +16,34 @@
 }
 
 .diskWrapper {
+  width: 100%;
   height: 100vh;
   position: relative;
   padding-top: 20vw;
 }
 
-.diskWrapper::before {
-  content: '';
-  background: url('./img/backg.jpg') no-repeat center center;
-  background-size: cover;
-  filter: blur(30px);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
 .diskWrapper>.disk {
+  width: 68vw;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
   animation: circle 18s infinite linear;
+  animation-play-state: paused;
+}
+
+.diskWrapper>.disk.playing {
+  animation-play-state: running;
 }
 
 .diskWrapper>.disk>.diskImg {
-  width: 72vw;
+  width: 68vw;
 }
 
 .diskWrapper>.disk>.diskLight {
-  width: 72vw;
+  width: 68vw;
   position: absolute;
 }
 
@@ -66,19 +61,72 @@
   z-index: 2;
 }
 
-.diskWrapper>.icon{
+.diskWrapper>.icon::before {
+  content: '';
+  border: 1px solid white;
+  border-radius: 50%;
   position: absolute;
   width: 14vw;
   height: 14vw;
-  top: 49vw;
-  left:43.8vw;
+  top: 47vw;
+  left: 42vw;
 }
 
-@keyframes circle{
+.diskWrapper>.icon>.icon-playing {
+  position: absolute;
+  width: 6vw;
+  height: 6vw;
+  top: 51.5vw;
+  left: 46.5vw;
+}
+
+.diskWrapper>.icon.paused>.icon-playing {
+  display: none;
+}
+
+.diskWrapper>.icon.paused>.icon-pause {
+  display: block;
+}
+
+.diskWrapper>.icon>.icon-pause {
+  position: absolute;
+  width: 6vw;
+  height: 6vw;
+  top: 51.4vw;
+  left: 46.5vw;
+  display: none;
+}
+
+@keyframes circle {
   0% {
-    transform:rotate(0)
+    transform: rotate(0)
   }
-  100%{
-    transform:rotate(360deg)
+  100% {
+    transform: rotate(360deg)
   }
+}
+
+.content {
+  text-align: center;
+}
+
+.content>.lyrics-wrapper {
+  border: 1px solid red;
+  height: 252px;
+  padding-top: 10px;
+  overflow: hidden;
+}
+
+.content>.lyrics-wrapper p {
+  color: white;
+  margin-bottom: 5px;
+  
+}
+
+.content>.lyrics-wrapper p.active {
+  color: red;
+}
+
+.content>.lyrics-wrapper>.lyrics{
+  transition: all 0.6s;
 }
