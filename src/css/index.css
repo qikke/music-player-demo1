@@ -21,6 +21,12 @@ h3 {
   font-weight: normal;
 }
 
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
 .icon {
   width: 1em;
   height: 1em;
@@ -45,91 +51,119 @@ body {
   font-size: 15px;
 }
 
-.sticky>.topbar {
+.sticky > .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 8px;
-  background: #d43c33;
 }
 
-.sticky .logo {
-  width: 145px;
-  height: 32px;
-  background-image: url('../img/logo.png')
+.topbar .logo {
+  background: url("../img/logo3.jpg");
+  width: 6vw;
+  height: 6vw;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
 }
 
-.sticky>.topbar>a {
-  color: white;
-  border: 1px solid white;
-  border-radius: 16px;
-  padding: 3px 10px;
-}
-
-.sticky>.globalTabs ol {
-  display: flex;
-  justify-content: space-around;
-}
-
-.sticky>.globalTabs li {
-  width: 33.3%;
+.topbar .topic {
+  flex-grow: 1;
   text-align: center;
+  font-weight: bold;
+  font-size: 3vw;
+}
+
+.sticky > .top-slide {
+  display: block;
+}
+
+.top-slide .viewport {
+  width: 90vw;
+  margin: 0 auto;
+  overflow: hidden;
+  height: 33vw;
+  position: relative;
+  border-radius: 12px;
+}
+
+.top-slide .wrapper {
+  position: absolute;
+  width: 455vw;
+  height: 33vw;
+}
+
+.top-slide img {
+  width: 90vw;
+  height: 33vw;
+  float: left;
+  border-radius: 12px;
+}
+
+.buttons {
+  position: absolute;
+  bottom:10px;
+  left:50%;
+  transform: translateX(-50%);
+  height: 8px;
   display: flex;
   justify-content: center;
 }
 
-.sticky>.globalTabs .text {
-  display: block;
-  padding: 9px 5px;
+.buttons > span {
+  margin-right: 5px;
+  width: 8px;
+  background-color: rgba(0,0,0,0.2);
+  cursor: pointer;
+  border-radius: 50%;
 }
 
-.sticky>.globalTabs li.active .text {
-  color: #D43C33;
-  border-bottom: 3px solid #D43C33;
+.buttons > span.active {
+  background: radial-gradient(circle closest-side, white, #ddd)
 }
 
 .tabContent {
   border-top: 1px solid #ddd;
 }
 
-.tabContent>li {
+.tabContent > li {
   display: none;
 }
 
-.tabContent>li.active {
+.tabContent > li.active {
   display: block;
 }
 
 /* page-1 */
 
-.tabContent>.page-1 h2 {
+.tabContent > .page-1 h2 {
   font-size: 17px;
   padding-left: 8px;
   margin: 20px 0 8px;
   border-left: 2px solid #D43C33;
 }
 
-.tabContent>.page-1>.playlists .songs {
+.tabContent > .page-1 > .playlists .songs {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 15px;
 }
 
-.tabContent>.page-1>.playlists .songs li {
+.tabContent > .page-1 > .playlists .songs li {
   width: 32.8%;
   margin-bottom: 25px;
 }
 
-.tabContent>.page-1>.playlists .songs img {
+.tabContent > .page-1 > .playlists .songs img {
   width: 100%;
 }
 
-.tabContent>.page-1>.latest ol {
+.tabContent > .page-1 > .latest ol {
   margin-top: 20px;
 }
 
-.tabContent>.page-1>.latest li {
+.tabContent > .page-1 > .latest li {
   padding-left: 5px;
   position: relative;
   border-bottom: 1px solid #ddd;
@@ -137,21 +171,21 @@ body {
   margin-top: 8px;
 }
 
-.tabContent>.page-1>.latest h3 {
+.tabContent > .page-1 > .latest h3 {
   font-size: 17px;
 }
 
-.tabContent>.page-1>.latest p {
+.tabContent > .page-1 > .latest p {
   font-size: 12px;
   color: #888;
   padding-top: 3px;
 }
 
-.tabContent>.page-1>.latest svg {
+.tabContent > .page-1 > .latest svg {
   transform-origin: 0px 0px 0px;
 }
 
-.tabContent>.page-1>.latest .run svg {
+.tabContent > .page-1 > .latest .run svg {
   width: 1.5em;
   height: 1.5em;
   position: absolute;
@@ -160,7 +194,7 @@ body {
   transform: translateY(-50%);
 }
 
-.tabContent>.page-1 footer {
+.tabContent > .page-1 footer {
   height: 180px;
   width: 100%;
   background: url('../img/footer.png') no-repeat center;
@@ -171,12 +205,12 @@ body {
   padding-top: 37px;
 }
 
-.tabContent>.page-1 footer>div {
+.tabContent > .page-1 footer > div {
   width: 100%;
   text-align: center;
 }
 
-.tabContent>.page-1 footer .link-wrapper>a {
+.tabContent > .page-1 footer .link-wrapper > a {
   display: inline-block;
   border: 1px solid;
   font-size: 16px;
@@ -185,7 +219,7 @@ body {
   border-radius: 19px;
 }
 
-.tabContent>.page-1 footer .copyright {
+.tabContent > .page-1 footer .copyright {
   font-size: 12px;
   color: #888;
   transform: scale(.75);
