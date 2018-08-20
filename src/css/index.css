@@ -49,6 +49,7 @@ h3 {
 
 body {
   font-size: 15px;
+  padding: 0 2vw;
 }
 
 .sticky > .topbar {
@@ -97,13 +98,12 @@ body {
   width: 90vw;
   height: 33vw;
   float: left;
-  border-radius: 12px;
 }
 
 .buttons {
   position: absolute;
-  bottom:10px;
-  left:50%;
+  bottom: 10px;
+  left: 50%;
   transform: translateX(-50%);
   height: 8px;
   display: flex;
@@ -113,13 +113,121 @@ body {
 .buttons > span {
   margin-right: 5px;
   width: 8px;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   cursor: pointer;
   border-radius: 50%;
 }
 
 .buttons > span.active {
   background: radial-gradient(circle closest-side, white, #ddd)
+}
+
+.artists, .songList, .latestSong {
+  margin-top: 5vw;
+  font-size: 2.5vw;
+  font-weight: bold;
+  font-family: "Verdana", monospace;
+}
+
+.list {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: auto;
+  align-content: left;
+  overflow-scrolling: touch;
+}
+
+.list > li {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.songList .list > li {
+  align-items: flex-start;
+}
+
+.artists .list > li {
+  margin: 5vw 8vw 2vw 2vw;
+}
+
+.songList .list > li {
+  margin: 5vw 5vw 2vw 0;
+}
+
+.list .artistImg {
+  width: 13vw;
+  height: 13vw;
+  border-radius: 50%;
+  margin-bottom: 2vw;
+}
+
+.list .songListImg {
+  width: 23vw;
+  height: 24vw;
+  border-radius: 1vw;
+  margin-bottom: 2vw;
+
+}
+
+.list::-webkit-scrollbar {
+  display: none
+}
+
+.artists .list .name, .songList .list > li > span {
+  font-size: 2vw;
+  text-align: center;
+}
+
+.songList .list .artistName {
+  margin-top: 1vw;
+  color: #ddd;
+}
+
+.latestSong .latestSong-content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3vw;
+}
+
+.latestSong-content-list {
+  display: flex;
+  flex-direction: row;
+  padding:2vw 0;
+  position: relative;
+}
+
+.latestSong-content-list > img {
+  width:12vw;
+  height: 12vw;
+  border-radius: 0.5vw;
+}
+
+.latestSong-content-list > .song-intro{
+  margin-left: 4vw;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.latestSong-content-list > .song-intro > .songName{
+  font-weight: bold;
+  padding: 1.5vw 0;
+}
+
+.latestSong-content-list > .song-intro > .artistName{
+  color:#ddd;
+}
+
+.latestSong-content-list > .songTime{
+  position: absolute;
+  right: 1vw;
+  bottom: 4vw;
+  color:#ddd;
 }
 
 .tabContent {
@@ -141,22 +249,6 @@ body {
   padding-left: 8px;
   margin: 20px 0 8px;
   border-left: 2px solid #D43C33;
-}
-
-.tabContent > .page-1 > .playlists .songs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
-.tabContent > .page-1 > .playlists .songs li {
-  width: 32.8%;
-  margin-bottom: 25px;
-}
-
-.tabContent > .page-1 > .playlists .songs img {
-  width: 100%;
 }
 
 .tabContent > .page-1 > .latest ol {

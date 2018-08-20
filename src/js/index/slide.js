@@ -10,12 +10,10 @@
     }
   }
 
-
   let controller = {
     n: 0,
     timer: null,
     speed: 2500,
-
 
     init(view) {
       this.view = view
@@ -27,10 +25,8 @@
       this.view.wrapper.css({
         left: '-' + this.view.imgWidth + 'px'
       })
-
-      this.start()
-
       this.bindEvents()
+      this.start()
     },
     start() {
       this.timer = setInterval(() => {
@@ -39,11 +35,11 @@
       return this
     },
     changeTo(index) {
-      this.view.buttons.removeClass('active').eq(index-1).addClass('active')
+      this.view.buttons.removeClass('active').eq(index - 1).addClass('active')
       this.view.wrapper.animate({
           left: '-' + this.view.imgWidth * this.n + 'px'
         },
-        1500,
+        500,
         'swing',
         () => {
           if (++index === this.view.imgs.length + 1) {
@@ -54,7 +50,7 @@
           }
         })
     },
-    bindEvents(){
+    bindEvents() {
       //用户缩小页面时，停止计时器，防止出现bug
       $(document).on('visibilitychange', () => {
         if (document.hidden) {
