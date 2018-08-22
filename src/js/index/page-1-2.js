@@ -1,21 +1,19 @@
 {
   let view = {
-    el: 'section.latest',
+    el: 'section.latestSong',
     template: `
-    <li>
-      <h3>{{song.name}}</h3>
-      <p>
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-highquality"></use>
-        </svg>
-        {{song.singer}}
-      </p>
-      <a href="./song.html?id={{song.id}}" class="run">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-bofang"></use>
-        </svg>
-      </a>
-    </li>
+    <li class="latestSong-content-list">
+      <a href="./song.html?id={{song.id}}">
+       <img
+            src="{{song.img}}"
+        >
+        <div class="song-intro">
+          <span class="songName">{{song.name}}</span>
+          <span class="artistName">{{song.singer}}</span>
+        </div>
+        <span class="songTime">3:20</span>
+       </a>
+      </li>
     `,
     init() {
       this.$el = $(this.el)
@@ -26,7 +24,8 @@
       songs.map((song) => {
         let $li = $(this.template.replace('{{song.name}}', song.name)
           .replace('{{song.singer}}', song.singer)
-          .replace('{{song.id}}', song.id))
+          .replace('{{song.id}}', song.id)
+          .replace('{{song.img}}', song.img))
         $ol.append($li)
       })
     }

@@ -194,125 +194,38 @@ body {
   margin-top: 3vw;
 }
 
-.latestSong-content-list {
+.latestSong-content-list > a {
   display: flex;
   flex-direction: row;
   padding:2vw 0;
   position: relative;
 }
 
-.latestSong-content-list > img {
+.latestSong-content-list img {
   width:12vw;
   height: 12vw;
   border-radius: 0.5vw;
 }
 
-.latestSong-content-list > .song-intro{
+.latestSong-content-list .song-intro{
   margin-left: 4vw;
   display:flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.latestSong-content-list > .song-intro > .songName{
+.latestSong-content-list .song-intro > .songName{
   font-weight: bold;
   padding: 1.5vw 0;
 }
 
-.latestSong-content-list > .song-intro > .artistName{
-  color:#ddd;
+.latestSong-content-list .song-intro > .artistName{
+  color:#98999b;
 }
 
-.latestSong-content-list > .songTime{
+.latestSong-content-list .songTime{
   position: absolute;
   right: 1vw;
   bottom: 4vw;
-  color:#ddd;
-}
-
-.tabContent {
-  border-top: 1px solid #ddd;
-}
-
-.tabContent > li {
-  display: none;
-}
-
-.tabContent > li.active {
-  display: block;
-}
-
-/* page-1 */
-
-.tabContent > .page-1 h2 {
-  font-size: 17px;
-  padding-left: 8px;
-  margin: 20px 0 8px;
-  border-left: 2px solid #D43C33;
-}
-
-.tabContent > .page-1 > .latest ol {
-  margin-top: 20px;
-}
-
-.tabContent > .page-1 > .latest li {
-  padding-left: 5px;
-  position: relative;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-  margin-top: 8px;
-}
-
-.tabContent > .page-1 > .latest h3 {
-  font-size: 17px;
-}
-
-.tabContent > .page-1 > .latest p {
-  font-size: 12px;
-  color: #888;
-  padding-top: 3px;
-}
-
-.tabContent > .page-1 > .latest svg {
-  transform-origin: 0px 0px 0px;
-}
-
-.tabContent > .page-1 > .latest .run svg {
-  width: 1.5em;
-  height: 1.5em;
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.tabContent > .page-1 footer {
-  height: 180px;
-  width: 100%;
-  background: url('../img/footer.png') no-repeat center;
-  background-size: cover;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 37px;
-}
-
-.tabContent > .page-1 footer > div {
-  width: 100%;
-  text-align: center;
-}
-
-.tabContent > .page-1 footer .link-wrapper > a {
-  display: inline-block;
-  border: 1px solid;
-  font-size: 16px;
-  color: #D43C33;
-  padding: 10px 19px;
-  border-radius: 19px;
-}
-
-.tabContent > .page-1 footer .copyright {
-  font-size: 12px;
-  color: #888;
-  transform: scale(.75);
+  color:#98999b;
 }
