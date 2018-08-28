@@ -29,5 +29,4 @@
   }
 
   controller.init(view)
-
 }

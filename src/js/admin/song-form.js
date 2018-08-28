@@ -29,6 +29,16 @@
         </label>
       </div>
       <div class="row">
+        <label>所属歌单
+          <input type="text" value="__songList__" name="songList">
+        </label>
+      </div>
+      <div class="row">
+        <label>歌单封面
+          <input type="text" value="__songListImg__" name="songListImg">
+        </label>
+      </div>
+      <div class="row">
         <button type="submit">保存</button>
       </div>
     </form>`,
@@ -36,7 +46,7 @@
       this.$el = $(this.el)
     },
     render: function (data = {}) {
-      let placeholders = ['name', 'singer', 'url', 'id', 'img','lyrics']
+      let placeholders = ['name', 'singer', 'url', 'id', 'img','lyrics','songList','songListImg']
       let html = this.template
       placeholders.forEach((value) => {
         html = html.replace(`__${value}__`, data[value] || '')
@@ -56,17 +66,20 @@
       singer: '',
       url: '',
       id: '',
-      img: ''
+      img: '',
+      songList:'',
+      songListImg:''
     },
     create(data) {
-      let Song = AV.Object.extend('Song');
-      let song = new Song();
+      let Song = AV.Object.extend('Song')
+      let song = new Song()
       return song.save({
         name: data.name,
         singer: data.singer,
         url: data.url,
         img: data.img,
-        lyrics:data.lyrics
+        lyrics:data.lyrics,
+        dependent:data.songList
       }).then((newSong) => {
         let {
           id,
@@ -80,13 +93,13 @@
     },
     update(data) {
       let song = AV.Object.createWithoutData('Song', this.data.id)
-
       return song.save({
         name: data.name,
         singer: data.singer,
         url: data.url,
         img: data.img,
-        lyrics:data.lyrics
+        lyrics:data.lyrics,
+        dependent:data.songList
       }).then((newSong) => {
         let {
           id,
@@ -97,6 +110,38 @@
           ...attributes
         })
       })
+    },
+    isSongListExit(songList,songListImg){
+      let SongList =  new AV.Query('SongList');
+      SongList.exists('name');
+      return SongList.find().then(function (results) {
+        for(let i = 0; i < results.length; i++){
+          if(results[i].attributes.name === songList){
+            return (function(i){
+              results[i].set('img',songListImg)
+              results[i].save().then(()=>{
+              },(error)=>{
+                console.log(error)
+              })
+              return results[i]
+            })(i)
+          }
+        }
+        return false
+      }, function (error) {
+        console.log(error)
+      })
+    },
+    getSongList(id){
+      let query = new AV.Query('SongList')
+      return query.get(id).then((songList) =>{
+        return {
+          songList:songList.get('name'),
+          songListImg:songList.get('img')
+        }
+      }, function (error) {
+        console.log(error)
+      });
     }
   }
 
@@ -114,7 +159,11 @@
       })
       window.eventHub.on('select', (data) => {
         this.model.data = data
-        this.view.render(this.model.data)
+        this.model.getSongList(data.dependent.objectId).then((obj)=>{
+          Object.assign(this.model.data,obj)
+          this.view.render(this.model.data)
+        })
+
       })
       window.eventHub.on('selectNewSong', () => {
         if (this.model.data.id) {
@@ -124,7 +173,9 @@
             url: '',
             id: '',
             img: '',
-            lyrics:''
+            lyrics:'',
+            songList:'',
+            songListImg:''
           }
         }
         this.view.render(this.model.data)
@@ -133,23 +184,33 @@
     bindEvents() {
       this.view.$el.on('submit', 'form', (e) => {
         e.preventDefault()
-        let needs = ['name', 'singer', 'url', 'img','lyrics']
+        let needs = ['name', 'singer', 'url', 'img','lyrics','songList','songListImg']
         let data = {}
         needs.map((string) => {
           data[string] = this.view.$el.find(`[name=${string}]`).val()
         })
 
-        if (this.model.data.id) {
-          this.model.update(data).then(() => {
-            window.eventHub.emit('created', this.model.data)
-            alert("编辑成功！")
-          })
-        } else {
-          this.model.create(data).then(() => {
-            window.eventHub.emit('created', this.model.data)
-            alert("保存成功！")
-          })
-        }
+        this.model.isSongListExit(data.songList,data.songListImg).then((songList)=>{
+          //if songList is not exist
+          console.log(songList)
+          if(!songList){
+            songList = new AV.Object('SongList');
+            songList.set('name', data.songList);
+            songList.set('img', data.songListImg);
+          }
+          data.songList = songList
+          if (this.model.data.id) {
+            this.model.update(data).then(() => {
+              window.eventHub.emit('created', this.model.data)
+              alert("编辑成功！")
+            })
+          } else {
+            this.model.create(data).then(() => {
+              window.eventHub.emit('created', this.model.data)
+              alert("保存成功！")
+            })
+          }
+        })
       })
     }
   }

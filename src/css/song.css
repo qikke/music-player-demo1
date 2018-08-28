@@ -52,6 +52,7 @@ body{
 .song-content .icon {
   width: 4vw;
   height: 4vw;
+  padding:10px;
   vertical-align: -0.15em;
   fill: #232323;
   overflow: hidden;
@@ -76,6 +77,8 @@ body{
   text-align: center;
   color: #d8d8d9;
   line-height: 6vw;
+  white-space:nowrap;
+  font-size: 4vw;
 }
 
 .song-content .lyrics p.active{
@@ -107,6 +110,14 @@ body{
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.control-bar-loaded::after{
+  content: '';
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  width: 100%;
 }
 
 .control-bar-played {

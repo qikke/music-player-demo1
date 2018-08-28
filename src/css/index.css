@@ -57,6 +57,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 16px 8px;
+  font-family: Helvetica,Helvetica,sans-serif;
+
 }
 
 .topbar .logo {
@@ -72,7 +74,7 @@ body {
   flex-grow: 1;
   text-align: center;
   font-weight: bold;
-  font-size: 3vw;
+  font-size: 3.5vw;
 }
 
 .sticky > .top-slide {
@@ -123,11 +125,12 @@ body {
 }
 
 .artists, .songList, .latestSong {
-  margin-top: 5vw;
-  font-size: 2.5vw;
+  margin: 5vw 0;
+  font-size: 3.5vw;
   font-weight: bold;
-  font-family: "Verdana", monospace;
+  font-family: Helvetica,Helvetica,sans-serif;
 }
+
 
 .list {
   width: 100%;
@@ -147,6 +150,14 @@ body {
   align-items: center;
 }
 
+.songList .list > li > a{
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 .songList .list > li {
   align-items: flex-start;
 }
@@ -156,36 +167,49 @@ body {
 }
 
 .songList .list > li {
-  margin: 5vw 5vw 2vw 0;
+  margin: 4vw 5vw 2vw 0;
 }
 
 .list .artistImg {
-  width: 13vw;
-  height: 13vw;
+  width: 16vw;
+  height: 16vw;
   border-radius: 50%;
   margin-bottom: 2vw;
 }
 
 .list .songListImg {
-  width: 23vw;
-  height: 24vw;
+  width: 26vw;
+  height: 27vw;
   border-radius: 1vw;
   margin-bottom: 2vw;
-
 }
 
 .list::-webkit-scrollbar {
   display: none
 }
 
-.artists .list .name, .songList .list > li > span {
-  font-size: 2vw;
-  text-align: center;
+.artists .list .name, .songList .list > li span {
+  font-size: 3vw;
+}
+.artists .list .name{
+  font-family: Trebuchet MS,Helvetica,sans-serif;
+}
+
+.songList .list .songName{
+  width:80%;
+  overflow: hidden;
+  display:inline-block;
+  white-space: nowrap;
+  font-family: Trebuchet MS,Helvetica,sans-serif;
 }
 
 .songList .list .artistName {
+  display:inline-block;
+  white-space: nowrap;
   margin-top: 1vw;
-  color: #ddd;
+  font-family: Trebuchet MS,Helvetica,sans-serif;
+  color: #8d8d8d;
+  font-size: 1.5vw;
 }
 
 .latestSong .latestSong-content {
@@ -212,6 +236,8 @@ body {
   display:flex;
   flex-direction: column;
   justify-content: center;
+  font-family: Trebuchet MS,Helvetica,sans-serif;
+
 }
 
 .latestSong-content-list .song-intro > .songName{
@@ -221,6 +247,7 @@ body {
 
 .latestSong-content-list .song-intro > .artistName{
   color:#98999b;
+  font-size:3vw;
 }
 
 .latestSong-content-list .songTime{
@@ -228,4 +255,5 @@ body {
   right: 1vw;
   bottom: 4vw;
   color:#98999b;
+  font-size: 2.5vw;
 }

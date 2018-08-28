@@ -43,7 +43,13 @@ var server = http.createServer(function (request, response) {
 
     var options = {
       scope: 'music-player-demo1',
-    };
+      // returnBody:`{
+      //   "Pragma": "no-cache",
+      //   "Accept-Ranges": "bytes",
+      //   "Content-Range": "bytes"
+      // }`
+    }
+    // "Content-Type":"$ mimeType",
     var putPolicy = new qiniu.rs.PutPolicy(options);
     var uploadToken = putPolicy.uploadToken(mac);
 

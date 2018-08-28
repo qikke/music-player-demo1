@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  /*box-sizing: border-box;*/
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body{
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+
+.topbar{
+  display:flex;
+  flex-direction: column;
+  padding:8vw 0 3vw 0;
+  position:relative;
+}
+
+.topbar .topic{
+  text-align: center;
+  font-weight: bold;
+  font-size: 3.5vw;
+  margin-bottom:5vw;
+}
+
+.topbar .returnButton{
+  width: 4vw;
+  height: 4vw;
+  vertical-align: -0.15em;
+  fill: #232323;
+  overflow: hidden;
+  position: absolute;
+  left: 4.5vw;
+  top: 5.5vw;
+  padding:10px;
+}
+
+.topbar img{
+  width: 90vw;
+  margin: 0 auto;
+  height: 33vw;
+  border-radius: 12px;
+}
+
+section.info{
+  display:flex;
+  justify-content: space-between;
+  width: 90vw;
+  margin: 0 auto 5vw auto;
+  background:#fbfbfb;
+  padding:7vw 0;
+  border-radius: 12px;
+}
+
+section.info > div{
+  width: 30%;
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+section.info .counts{
+  font-size: 4vw;
+  font-weight: bold;
+  line-height: 6vw;
+}
+
+section.info .name{
+  font-size: 3vw;
+  font-weight: bold;
+  color:#969799;
+}
+
+main{
+  width: 90vw;
+  margin: 0 auto;
+}
+
+main .header{
+  font-size: 3.5vw;
+  font-weight: bold;
+  padding:2vw 0;
+}
+
+
+main .latestSong-content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3vw;
+}
+
+.latestSong-content-list > a {
+  display: flex;
+  flex-direction: row;
+  padding:2vw 0;
+  position: relative;
+}
+
+.latestSong-content-list img {
+  width:15vw;
+  height: 15vw;
+  border-radius: 0.5vw;
+}
+
+.latestSong-content-list .song-intro{
+  margin-left: 4vw;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.latestSong-content-list .song-intro > .songName{
+  font-weight: bold;
+  padding: 1.5vw 0;
+  font-size: 3vw;
+}
+
+.latestSong-content-list .song-intro > .artistName{
+  color:#98999b;
+  font-size: 3vw;
+}
+
+.latestSong-content-list .songTime{
+  position: absolute;
+  right: 1vw;
+  bottom: 6vw;
+  color:#98999b;
+  font-size:3vw;
+}

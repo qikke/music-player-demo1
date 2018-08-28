@@ -49,9 +49,11 @@
             // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
 
             var domain = up.getOption('domain');
+            console.log(info)
             var res = JSON.parse(info.response);
+            console.log(res)
             var sourceLink = 'http://' + domain + encodeURIComponent(res.key)
-            console.log(sourceLink + ' ' + res.key)
+            // console.log(sourceLink + ' ' + res.key)
             window.eventHub.emit('upload', {
               name: res.key,
               url: sourceLink

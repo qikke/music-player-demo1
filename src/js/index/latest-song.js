@@ -13,21 +13,35 @@
         </div>
         <span class="songTime">3:20</span>
        </a>
+       
       </li>
     `,
     init() {
       this.$el = $(this.el)
     },
     render(data) {
+      let _this = this
       let songs = data.songs
       let $ol = this.$el.find('ol')
-      songs.map((song) => {
-        let $li = $(this.template.replace('{{song.name}}', song.name)
-          .replace('{{song.singer}}', song.singer)
-          .replace('{{song.id}}', song.id)
-          .replace('{{song.img}}', song.img))
+      for(let i = 0; i < 5; i++){
+        let audio = $(`<audio src="${songs[i].url}"></audio>`)
+        audio.on('canplay',function(){
+          _this.$el.find('.songTime')[i].innerHTML = _this.secondsToMinutes(this.duration)
+        })
+
+        let $li = $(this.template.replace('{{song.name}}', songs[i].name)
+          .replace('{{song.singer}}', songs[i].singer)
+          .replace('{{song.id}}', songs[i].id)
+          .replace('{{song.img}}', songs[i].img))
         $ol.append($li)
-      })
+      }
+    },
+    secondsToMinutes(second){
+      let intSeconds = (second >> 0)
+      let minutes = (intSeconds / 60) >> 0
+      let seconds = intSeconds % 60
+      seconds = seconds < 10 ? '0' + seconds : seconds
+      return minutes + ':' + seconds
     }
   }
 
@@ -38,7 +52,6 @@
     find() {
       let query = new AV.Query('Song')
       return query.find().then((songs) => {
-        console.log(1)
         this.data.songs = songs.map((song) => {
           return {
             id: song.id,
